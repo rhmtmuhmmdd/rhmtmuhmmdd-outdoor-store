@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<!-- Zoom halaman dibatasi. Zoom foto produk memakai lightbox buatan sendiri di bawah. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<!-- Ganti nama toko di title, description, dan Open Graph bila STORE_CONFIG.nama diubah (metadata harus ada di HTML awal). -->
+<title>rhmtmuhmmdd outdoor | Katalog Tas Premium</title>
+<meta name="description" content="Katalog tas premium untuk perjalanan dan aktivitas outdoor. Lihat koleksi, harga, dan pesan lewat WhatsApp atau Instagram.">
+<meta name="theme-color" content="#FBF8F1">
+<meta property="og:type" content="website">
+<meta property="og:title" content="rhmtmuhmmdd outdoor | Katalog Tas Premium">
+<meta property="og:description" content="Katalog tas premium untuk perjalanan dan aktivitas outdoor. Pesan lewat WhatsApp atau Instagram.">
+<!-- Untuk preview tautan, sebagian aplikasi butuh alamat gambar lengkap, mis. https://domainmu.com/Produk01.jpg -->
+<meta property="og:image" content="Produk01.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233F4D2F'/%3E%3Cpath d='M9 22V12a7 7 0 0 1 14 0v10z' fill='none' stroke='%23FBF8F1' stroke-width='2.4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#FBF8F1; --surface:#fff; --ink:#1F2120; --muted:#62665D; --line:#E6E0D2;
+  --accent:#3F4D2F; --accent-d:#2E3922; --sale:#B42318; --ok:#2F6B3A;
+  --r:12px; --r-s:8px; --shadow:0 1px 2px rgba(31,33,32,.06),0 6px 18px rgba(31,33,32,.07);
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;touch-action:manipulation;scroll-padding-top:76px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font);overflow-x:hidden;-webkit-tap-highlight-color:transparent}
+img{max-width:100%;display:block}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+[hidden]{display:none!important}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 max(16px,var(--sal)) 0 max(16px,var(--sar))}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid #1F6FEB;outline-offset:2px}
+
+/* Tombol */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 16px;border-radius:var(--r-s);border:1.5px solid var(--accent);background:transparent;color:var(--accent);font:600 14px/1.2 var(--font);text-decoration:none;cursor:pointer;transition:background-color .18s,color .18s,box-shadow .18s,transform .12s;-webkit-appearance:none}
+.btn.primary{background:var(--accent);color:#fff}
+.btn:hover{box-shadow:0 4px 12px rgba(31,33,32,.15)}
+.btn.primary:hover{background:var(--accent-d)}
+.btn:not(.primary):hover{background:rgba(63,77,47,.08)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{background:#ECE8DD;border-color:#ECE8DD;color:#7B7E75;cursor:not-allowed;box-shadow:none;transform:none}
+.icon-btn{width:44px;height:44px;display:grid;place-items:center;border:0;border-radius:var(--r-s);background:transparent;color:var(--ink);cursor:pointer;transition:background-color .18s,transform .12s}
+.icon-btn:hover{background:rgba(31,33,32,.07)}
+.icon-btn:active{transform:scale(.94)}
+.icon-btn svg{width:22px;height:22px}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:30;background:rgba(251,248,241,.96);border-bottom:1px solid var(--line);padding-top:var(--sat)}
+.bar{display:flex;align-items:center;gap:4px;min-height:60px}
+.brand{font-weight:800;font-size:16px;line-height:1.15;letter-spacing:-.02em;text-decoration:none;margin-right:auto;min-width:0;overflow-wrap:anywhere}
+.nav{display:none}
+.nav a{display:block;padding:12px 16px;text-decoration:none;font-weight:600;border-radius:var(--r-s)}
+.nav a:hover{background:rgba(31,33,32,.06)}
+.nav.open{display:flex;flex-direction:column;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:8px max(12px,var(--sal)) 12px;box-shadow:var(--shadow);animation:drop .2s ease-out}
+.bar .btn{min-height:40px;padding:8px 14px}
+@media (min-width:820px){
+  .menu-btn{display:none}
+  .nav,.nav.open{display:flex;flex-direction:row;position:static;border:0;box-shadow:none;padding:0;background:none;animation:none;margin-right:12px}
+  .brand{margin-right:24px}
+  .bar .nav{margin-right:auto}
+}
+@media (min-width:820px){.brand{margin-right:0}}
+
+/* Hero */
+.hero{padding:28px 0 20px}
+.hero-grid{display:grid;gap:22px;align-items:center}
+.hero h1{font-size:clamp(28px,7vw,48px);line-height:1.08;letter-spacing:-.03em;font-weight:800;max-width:16ch}
+.hero p{color:var(--muted);margin:12px 0 20px;max-width:46ch}
+.hero-visual{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}
+.hero-visual .photo-btn{aspect-ratio:4/3}
+.hero-cap{padding:10px 14px;font-size:14px;color:var(--muted);border-top:1px solid var(--line)}
+@media (min-width:820px){.hero{padding:48px 0 28px}.hero-grid{grid-template-columns:1.05fr .95fr;gap:48px}.hero-visual .photo-btn{aspect-ratio:1/1}}
+
+/* Keunggulan */
+.perks{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:8px 0 28px}
+.perk{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px}
+.perk strong{display:block;font-size:14px}
+.perk span{display:block;font-size:13px;color:var(--muted);margin-top:2px}
+@media (min-width:820px){.perks{grid-template-columns:repeat(4,1fr)}}
+
+/* Katalog */
+.section-head h2{font-size:clamp(22px,4.6vw,30px);letter-spacing:-.02em;font-weight:800}
+.toolbar{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 0 10px}
+.toolbar .search{grid-column:1/-1}
+.toolbar label{display:block;font-size:13px;font-weight:600;margin-bottom:4px}
+.toolbar input,.toolbar select{width:100%;min-height:44px;padding:9px 12px;font:16px var(--font);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:var(--r-s);transition:border-color .18s}
+.toolbar input:hover,.toolbar select:hover{border-color:#C9C2B0}
+.toolbar select:last-child{grid-column:1/-1}
+@media (min-width:820px){.toolbar{grid-template-columns:2fr 1fr 1fr 1fr}.toolbar .search{grid-column:auto}.toolbar select:last-child{grid-column:auto}}
+.status-row{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:6px 0 14px;font-size:14px;color:var(--muted);min-height:34px}
+.link-btn{border:0;background:none;color:var(--accent);font:600 14px var(--font);text-decoration:underline;cursor:pointer;min-height:34px;padding:0 4px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}}
+@media (min-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;min-width:0;animation:fade .25s ease-out;transition:transform .2s,box-shadow .2s}
+@media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(31,33,32,.07),0 14px 28px rgba(31,33,32,.11)}}
+.media{position:relative}
+.photo-btn{display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;background:#F1EDE2;cursor:zoom-in;position:relative}
+.photo{position:absolute;inset:0}
+.photo img{width:100%;height:100%;object-fit:contain;background:#F1EDE2}
+.ph{position:absolute;inset:0;display:grid;place-items:center;text-align:center;padding:12px;color:var(--muted);font-size:13px;font-weight:600;background:repeating-linear-gradient(135deg,#F1EDE2 0 12px,#EBE6D8 12px 24px)}
+.photo.loaded .ph{display:none}
+.photo img{position:relative}
+.badge{position:absolute;z-index:2;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;line-height:1.4}
+.b-sale{top:8px;left:8px;background:var(--sale);color:#fff}
+.b-stock{bottom:8px;left:8px;background:#fff;color:var(--ok);border:1px solid #BFD8C4}
+.b-stock.out{color:#7A1F17;border-color:#E8C3BF;background:#FDF1F0}
+.card-body{display:flex;flex-direction:column;gap:6px;padding:12px;flex:1}
+.meta{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+.card h3{font-size:15px;line-height:1.3;font-weight:700;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
+.price{display:flex;flex-direction:column;gap:2px}
+.now{font-size:19px;font-weight:800;letter-spacing:-.02em}
+.now.ask{font-size:14px;font-weight:700;color:var(--muted)}
+.was-row{display:flex;flex-wrap:wrap;gap:2px 8px;align-items:baseline;font-size:12px}
+.was{color:var(--muted)}
+.save{color:var(--sale);font-weight:700}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:8px}
+.actions .btn{flex:1 1 112px;padding:9px 10px}
+.empty{grid-column:1/-1;text-align:center;padding:44px 16px;background:var(--surface);border:1px dashed #CFC8B6;border-radius:var(--r)}
+.empty h3{font-size:18px;margin-bottom:6px}
+.empty p{color:var(--muted);margin-bottom:16px}
+
+/* Info + footer */
+.info{padding:48px 0 8px}
+.info-grid{display:grid;gap:14px;margin-top:16px}
+@media (min-width:820px){.info-grid{grid-template-columns:1fr 1fr}}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.panel h3{font-size:17px;margin-bottom:8px}
+.panel ol{margin:0;padding-left:20px}
+.panel li,.panel p{color:#3C3F3A;margin-top:6px}
+footer{margin-top:44px;background:#1F2120;color:#E9E6DC;padding:32px 0 calc(96px + var(--sab))}
+.foot{display:grid;gap:22px}
+@media (min-width:820px){.foot{grid-template-columns:1.4fr 1fr 1fr}}
+footer h3{font-size:15px;margin-bottom:8px;color:#fff}
+footer p,footer li{font-size:14px;color:#C9C6BB}
+footer ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+footer a{display:inline-block;padding:7px 0;text-decoration:none}
+footer a:hover{text-decoration:underline}
+.copy{margin-top:22px;padding-top:16px;border-top:1px solid #3A3D39;font-size:13px;color:#A9A699}
+
+/* Lapisan (modal, pilihan beli, lightbox) */
+.layer{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:max(12px,var(--sat)) max(12px,var(--sar)) max(12px,var(--sab)) max(12px,var(--sal));background:rgba(20,22,18,.55);animation:fade .18s ease-out}
+#modal{z-index:50}#order{z-index:60;align-items:flex-end}#lb{z-index:70;padding:0;background:rgba(10,12,9,.95)}
+@media (min-width:700px){#order{align-items:center}}
+.dialog{position:relative;width:100%;background:var(--bg);border-radius:var(--r);box-shadow:0 20px 50px rgba(0,0,0,.3);max-height:calc(100vh - 24px);max-height:calc(100dvh - 24px);overflow:auto;overscroll-behavior:contain;animation:pop .22s ease-out}
+#modal .dialog{max-width:900px}#order .dialog{max-width:440px;padding:20px}
+.close{position:absolute;top:8px;right:8px;z-index:5;background:rgba(251,248,241,.92);border:1px solid var(--line);border-radius:50%}
+.d-grid{display:grid}
+@media (min-width:720px){.d-grid{grid-template-columns:1fr 1fr}}
+.d-grid .photo-btn{aspect-ratio:1/1;border-radius:var(--r) var(--r) 0 0}
+@media (min-width:720px){.d-grid .photo-btn{height:100%;min-height:420px;border-radius:var(--r) 0 0 var(--r)}}
+.d-info{padding:20px;display:flex;flex-direction:column;gap:10px}
+.d-info h2{font-size:22px;line-height:1.2;letter-spacing:-.02em;overflow-wrap:anywhere;padding-right:36px}
+.d-info .now{font-size:26px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:3px 10px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:13px}
+.desc{color:#3C3F3A;overflow-wrap:anywhere;white-space:pre-line}
+.hint{font-size:13px;color:var(--muted)}
+.stack{display:grid;gap:10px;margin-top:14px}
+#order h2{font-size:19px;padding-right:40px}
+.sum{margin-top:6px;color:var(--muted);font-size:14px;overflow-wrap:anywhere}
+
+/* Lightbox */
+.lb-stage{position:absolute;inset:0;display:grid;place-items:center;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.lb-stage img{max-width:100%;max-height:100%;object-fit:contain;transform-origin:center;will-change:transform;-webkit-user-drag:none;pointer-events:auto}
+.lb-top{position:absolute;top:0;right:0;z-index:3;padding:max(10px,var(--sat)) max(10px,var(--sar)) 0 0}
+.lb-bar{position:absolute;bottom:0;left:0;right:0;z-index:3;display:flex;justify-content:center;gap:8px;padding:10px 10px max(14px,var(--sab))}
+.lb .btn,.lb-top .btn{background:rgba(31,33,32,.85);color:#fff;border-color:rgba(255,255,255,.35);min-width:48px}
+.lb .btn:hover{background:rgba(63,77,47,.95)}
+
+/* Tombol WhatsApp mengambang */
+.fab{position:fixed;right:calc(14px + var(--sar));bottom:calc(14px + var(--sab));z-index:40;width:52px;height:52px;border-radius:50%;border:0;background:#25D366;color:#fff;display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.25);cursor:pointer;transition:transform .15s,box-shadow .15s}
+.fab:hover{box-shadow:0 8px 22px rgba(0,0,0,.3)}
+.fab:active{transform:scale(.94)}
+.fab svg{width:28px;height:28px}
+body.has-layer .fab{display:none}
+.toast{position:fixed;left:50%;bottom:calc(84px + var(--sab));transform:translateX(-50%);z-index:90;max-width:min(92vw,380px);background:#1F2120;color:#fff;padding:10px 16px;border-radius:var(--r-s);font-size:14px;box-shadow:var(--shadow);animation:fade .2s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<a class="sr" href="#koleksi">Lompat ke koleksi</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <button class="icon-btn menu-btn" id="menuBtn" type="button" aria-label="Buka menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <a class="brand" href="#beranda" id="brandName">rhmtmuhmmdd outdoor</a>
+    <nav class="nav" id="nav" aria-label="Navigasi utama">
+      <a href="#beranda">Beranda</a><a href="#koleksi">Koleksi</a><a href="#informasi">Informasi</a>
+    </nav>
+    <button class="icon-btn" id="searchBtn" type="button" aria-label="Cari produk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    </button>
+    <button class="btn primary" id="contactBtn" type="button">Pesan</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="beranda">
+    <div class="wrap hero-grid">
+      <div>
+        <h1 id="heroTitle">Tas pilihan untuk perjalananmu</h1>
+        <p id="heroDesc"></p>
+        <a class="btn primary" href="#koleksi">Jelajahi Koleksi</a>
+      </div>
+      <div class="hero-visual" id="heroVisual"></div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="perks" id="perks"></div></div>
+
+  <section id="koleksi" class="wrap">
+    <div class="section-head"><h2>Koleksi Pilihan</h2></div>
+    <div class="toolbar" role="search">
+      <div class="search"><label for="q">Cari produk</label><input id="q" type="search" placeholder="Nama, merek, kategori, warna" autocomplete="off"></div>
+      <div><label for="fKat">Kategori</label><select id="fKat"><option value="">Semua kategori</option></select></div>
+      <div><label for="fStok">Ketersediaan</label><select id="fStok"><option value="semua">Semua</option><option value="tersedia">Tersedia</option><option value="habis">Stok habis</option></select></div>
+      <div><label for="fSort">Urutkan</label>
+        <select id="fSort"><option value="awal">Urutan toko</option><option value="termurah">Harga termurah</option><option value="tertinggi">Harga tertinggi</option><option value="diskon">Diskon terbesar</option><option value="terbaru">Terbaru</option></select></div>
+    </div>
+    <div class="status-row"><span id="count" role="status" aria-live="polite"></span><button class="link-btn" id="resetBtn" type="button" hidden>Hapus filter</button></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <section class="info wrap" id="informasi">
+    <div class="section-head"><h2>Informasi</h2></div>
+    <div class="info-grid">
+      <div class="panel"><h3>Cara memesan</h3>
+        <ol><li>Pilih tas lalu ketuk Beli Sekarang.</li><li>Pilih chat WhatsApp atau Instagram.</li><li>Kirim pesan, lalu tunggu konfirmasi stok dan pembayaran dari penjual.</li></ol></div>
+      <div class="panel"><h3>Pengiriman dan stok</h3>
+        <p id="shipText"></p><p>Stok diperbarui manual oleh penjual dan belum tentu real-time. Penjual mengonfirmasi ketersediaan saat Anda menghubungi.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div><h3 id="fName"></h3><p id="fDesc"></p></div>
+      <div><h3>Menu</h3><ul><li><a href="#koleksi">Katalog produk</a></li><li><a href="#informasi">Cara memesan</a></li></ul></div>
+      <div><h3>Hubungi kami</h3><ul><li><a id="fWa" href="#" target="_blank" rel="noopener noreferrer">WhatsApp</a></li><li><a id="fIg" href="#" target="_blank" rel="noopener noreferrer">Instagram</a></li></ul></div>
+    </div>
+    <p class="copy" id="copy"></p>
+  </div>
+</footer>
+
+<!-- Detail produk -->
+<div class="layer" id="modal" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="mTitle">
+    <button class="icon-btn close" id="mClose" type="button" aria-label="Tutup detail produk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="d-grid" id="mBody"></div>
+  </div>
+</div>
+
+<!-- Pilihan saluran pembelian -->
+<div class="layer" id="order" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="oTitle">
+    <button class="icon-btn close" id="oClose" type="button" aria-label="Tutup pilihan pemesanan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div id="oBody"></div>
+  </div>
+</div>
+
+<!-- Lightbox foto -->
+<div class="layer lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Zoom foto produk">
+  <div class="lb-stage" id="lbStage"><img id="lbImg" alt="" draggable="false"></div>
+  <div class="lb-top"><button class="btn" id="lbClose" type="button" aria-label="Tutup foto">Tutup</button></div>
+  <div class="lb-bar">
+    <button class="btn" id="lbOut" type="button" aria-label="Perkecil foto">−</button>
+    <button class="btn" id="lbReset" type="button" aria-label="Atur ulang zoom">Reset</button>
+    <button class="btn" id="lbIn" type="button" aria-label="Perbesar foto">+</button>
+  </div>
+</div>
+
+<button class="fab" id="fab" type="button" aria-label="Hubungi toko lewat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.200zm4.500-6.100c-.2-.1-1.500-.7-1.700-.8-.2-.1-.4-.1-.6.100l-.8 1c-.1.200-.3.200-.5.100a6.700 6.700 0 0 1-3.300-2.900c-.2-.4.200-.4.700-1.300.1-.1 0-.3 0-.4l-.8-1.800c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.100-.7.300-.2.300-.9.900-.9 2.200s.9 2.500 1.100 2.700c.1.200 1.900 2.900 4.600 4 1.700.7 2.300.8 3.200.7.500-.1 1.500-.6 1.700-1.200.2-.6.200-1.100.2-1.200-.1-.1-.3-.2-.5-.3z"/></svg>
+</button>
+
+<script>
+"use strict";
+/* ============ 1. KONFIGURASI TOKO (edit di sini) ============ */
+const STORE_CONFIG = {
+  nama: "rhmtmuhmmdd outdoor",                       // Nama toko
+  slogan: "Tas pilihan untuk perjalananmu",
+  deskripsi: "Koleksi tas dengan foto asli dan harga yang jelas. Pilih yang kamu suka, lalu pesan lewat chat.",
+  instagram: "rhmtmuhmmdd",                // tanpa @
+  whatsapp: "085657228559",                // boleh format lokal 08xx atau 62xx
+  footerTeks: "Hak cipta dilindungi.",
+  pengiriman: "Informasi ongkir dan estimasi pengiriman diberikan penjual saat Anda memesan.",
+  aksen: "#3F4D2F",                        // warna aksen utama
+  tombolWhatsAppMengambang: true,
+  fitur: [                                 // aktif: false untuk menyembunyikan
+    { aktif: true, judul: "Pemesanan mudah", teks: "Cukup satu ketukan untuk chat." },
+    { aktif: true, judul: "Harga transparan", teks: "Harga asli dan hemat ditampilkan." },
+    { aktif: true, judul: "Konsultasi WhatsApp", teks: "Tanya detail sebelum membeli." },
+    { aktif: true, judul: "Info pengiriman", teks: "Ditanyakan saat Anda memesan." }
+  ]
+};
+
+/* ============ 2. DATA PRODUK ============
+   Tambah produk : salin satu blok { ... }, beri id BARU yang unik, lalu isi datanya.
+   Hapus produk  : hapus blok-nya (atau beri status "habis" bila hanya kosong sementara).
+   Edit produk   : ubah nilainya langsung. Harga HARUS angka tanpa titik (450000).
+   gambar        : nama file foto, terpisah dari nama produk.
+   status        : "tersedia" atau "habis". Stok di sini diubah manual, tidak real-time.
+   Diskon dihitung otomatis dari hargaAsli dan hargaJual. */
+const PRODUCTS = [
+  /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: Produk01 = hitam, Produk02 = biru, Produk03 = merah. */
+  { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk01.jpg",
+    hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "tersedia",
+    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    warna: ["Hitam"], unggulan: true, tanggalDitambahkan: "2026-10-29" },
+  { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk02.jpg",
+    hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "tersedia",
+    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    warna: ["Biru"], unggulan: false, tanggalDitambahkan: "2026-10-29" },
+  { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk03.jpg",
+    hargaAsli: 609000, hargaJual: 550000, stok: 5, status: "tersedia",
+    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna merah. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    warna: ["Merah"], unggulan: false, tanggalDitambahkan: "2026-10-29" }
+];
+
+/* ============ 3. KONSTANTA DAN UTILITAS ============ */
+const $ = (id) => document.getElementById(id);
+const clamp = (n, a, b) => Math.min(b, Math.max(a, n));
+const norm = (s) => String(s || "").toLowerCase();
+
+function h(tag, props, ...kids) { // pembuat elemen aman (tanpa innerHTML)
+  const el = document.createElement(tag);
+  if (typeof props === "string") el.className = props;
+  else if (props) for (const [k, v] of Object.entries(props)) {
+    if (v == null || v === false) continue;
+    if (k === "class") el.className = v; else el.setAttribute(k, v === true ? "" : String(v));
+  }
+  for (const k of kids.flat()) if (k != null && k !== false) el.append(k);
+  return el;
+}
+function toIntlPhone(n) {
+  let d = String(n || "").replace(/\D/g, "");
+  if (d.startsWith("00")) d = d.slice(2);
+  if (d.startsWith("0")) d = "62" + d.slice(1);
+  return d;
+}
+function safeUrl(u) { // hanya izinkan https
+  try { const x = new URL(u); return x.protocol === "https:" ? x.href : null; } catch (e) { return null; }
+}
+function safeImageSrc(src) { // nama file relatif atau https
+  if (typeof src !== "string" || !src.trim()) return null;
+  const s = src.trim();
+  if (/^https:\/\//i.test(s)) return safeUrl(s);
+  return /^[\w\-. %/]+$/.test(s) && !s.includes("..") && !s.startsWith("/") ? s : null;
+}
+
+/* ============ 4. FORMAT RUPIAH ============ */
+const RP = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 });
+const fmt = (n) => RP.format(n).replace(/\s/g, ""); // Rp605.000
+
+/* ============ 5. VALIDASI DATA ============ */
+const validPrice = (v) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? Math.round(v) : null);
+
+function normalizeProducts(list) {
+  const seen = new Set(), out = [];
+  if (!Array.isArray(list)) { console.error("PRODUCTS harus berupa array."); return out; }
+  list.forEach((raw, i) => {
+    try {
+      if (!raw || typeof raw !== "object") throw new Error("bukan objek");
+      const id = typeof raw.id === "string" ? raw.id.trim() : "";
+      if (!id) throw new Error("id kosong");
+      if (seen.has(id)) throw new Error('id duplikat "' + id + '"');
+      const nama = typeof raw.nama === "string" ? raw.nama.trim() : "";
+      if (!nama) throw new Error("nama kosong");
+      seen.add(id);
+      const stok = Number.isInteger(raw.stok) && raw.stok >= 0 ? raw.stok : 0;
+      const p = {
+        idx: out.length, id, nama,
+        merek: typeof raw.merek === "string" ? raw.merek.trim() : "",
+        kategori: typeof raw.kategori === "string" && raw.kategori.trim() ? raw.kategori.trim() : "Lainnya",
+        gambar: raw.gambar, hargaAsli: raw.hargaAsli, hargaJual: raw.hargaJual,
+        deskripsi: typeof raw.deskripsi === "string" ? raw.deskripsi : "",
+        warna: Array.isArray(raw.warna) ? raw.warna.filter((w) => typeof w === "string" && w.trim()) : [],
+        unggulan: raw.unggulan === true,
+        tanggal: Date.parse(raw.tanggalDitambahkan) || -Infinity,
+        stok
+      };
+      p.tersedia = norm(raw.status) === "tersedia" && stok > 0; // status tidak valid dianggap habis
+      p.pr = calculatePricing(p);
+      out.push(p);
+    } catch (e) { console.warn("Produk #" + (i + 1) + " dilewati: " + e.message, raw); }
+  });
+  return out;
+}
+
+/* ============ 6. HARGA DAN DISKON (satu-satunya rumus) ============ */
+function calculatePricing(p) {
+  const asli = validPrice(p && p.hargaAsli), jual = validPrice(p && p.hargaJual);
+  const r = { asli, jual, asliValid: asli !== null, jualValid: jual !== null, hemat: 0, persen: 0, hasDiscount: false };
+  if (r.asliValid && r.jualValid && jual < asli) {
+    const persen = Math.round(((asli - jual) / asli) * 100);
+    if (persen >= 1) { r.hasDiscount = true; r.persen = persen; r.hemat = asli - jual; }
+  }
+  return r;
+}
+
+/* ============ 7. RENDER KATALOG ============ */
+let products = [];
+const byId = new Map();
+
+function makePhoto(p, eager) {
+  const box = h("div", "photo", h("div", "ph", "Foto belum tersedia"));
+  const src = safeImageSrc(p.gambar);
+  if (src) {
+    const im = new Image();
+    im.alt = p.nama; im.decoding = "async"; im.loading = eager ? "eager" : "lazy";
+    if (eager) im.fetchPriority = "high";
+    im.addEventListener("load", () => box.classList.add("loaded"), { once: true });
+    im.addEventListener("error", () => im.remove(), { once: true }); // fallback tetap placeholder, tanpa loop
+    im.src = src;
+    box.append(im);
+  }
+  return box;
+}
+function priceBlock(pr) {
+  const d = h("div", "price");
+  if (!pr.jualValid) { d.append(h("div", "now ask", "Tanya harga")); return d; }
+  d.append(h("div", "now", fmt(pr.jual)));
+  if (pr.hasDiscount) d.append(h("div", "was-row", h("span", "sr", "Harga asli "), h("s", "was", fmt(pr.asli)), h("span", "save", "Hemat " + fmt(pr.hemat))));
+  return d;
+}
+function stockBadge(p) { return h("span", "badge b-stock" + (p.tersedia ? "" : " out"), p.tersedia ? "Tersedia" : "Stok Habis"); }
+function saleBadge(p) {
+  return p.pr.hasDiscount ? h("span", { class: "badge b-sale", "aria-label": "Diskon " + p.pr.persen + " persen" }, "-" + p.pr.persen + "%") : null;
+}
+
+function buildCard(p, i) {
+  const photoBtn = h("button", { class: "photo-btn", type: "button", "data-action": "detail", "data-id": p.id, "aria-label": "Lihat detail " + p.nama }, makePhoto(p, i < 2));
+  const media = h("div", "media", photoBtn, saleBadge(p), stockBadge(p));
+  const meta = [p.merek, p.kategori].filter(Boolean).join(" • ");
+  const buy = h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis");
+  const det = h("button", { class: "btn", type: "button", "data-action": "detail", "data-id": p.id }, "Lihat Detail");
+  return h("article", "card", media, h("div", "card-body", h("div", "meta", meta), h("h3", null, p.nama), priceBlock(p.pr), h("div", "actions", det, buy)));
+}
+
+function renderGrid(list) {
+  const grid = $("grid");
+  grid.replaceChildren();
+  if (!list.length) {
+    const none = !products.length;
+    const box = h("div", "empty", h("h3", null, none ? "Produk belum tersedia" : "Tidak ada produk yang cocok"),
+      h("p", null, none ? "Hubungi kami lewat WhatsApp untuk menanyakan koleksi terbaru." : "Coba kata kunci lain atau hapus filter."));
+    const btn = h("button", { class: "btn primary", type: "button", "data-action": none ? "contact" : "reset" }, none ? "Chat WhatsApp" : "Lihat semua produk");
+    box.append(btn); grid.append(box); return;
+  }
+  const frag = document.createDocumentFragment();
+  list.forEach((p, i) => frag.append(buildCard(p, i)));
+  grid.append(frag);
+}
+
+/* ============ 8. PENCARIAN, FILTER, URUTAN ============ */
+const state = { q: "", kat: "", stok: "semua", sort: "awal" };
+const numAsc = (a, b) => (a === null ? 1 : b === null ? -1 : a - b);
+const numDesc = (a, b) => (a === null ? 1 : b === null ? -1 : b - a);
+const SORTS = {
+  awal: (a, b) => a.idx - b.idx,
+  termurah: (a, b) => numAsc(a.pr.jual, b.pr.jual),
+  tertinggi: (a, b) => numDesc(a.pr.jual, b.pr.jual),
+  diskon: (a, b) => b.pr.persen - a.pr.persen || a.idx - b.idx,
+  terbaru: (a, b) => (b.tanggal === a.tanggal ? 0 : b.tanggal > a.tanggal ? 1 : -1)
+};
+function getVisible() {
+  const q = norm(state.q).trim();
+  return products.filter((p) => {
+    if (state.kat && p.kategori !== state.kat) return false;
+    if (state.stok === "tersedia" && !p.tersedia) return false;
+    if (state.stok === "habis" && p.tersedia) return false;
+    return !q || norm([p.nama, p.merek, p.kategori, p.deskripsi, p.warna.join(" ")].join(" ")).includes(q);
+  }).sort(SORTS[state.sort] || SORTS.awal);
+}
+function filtersActive() { return !!(state.q.trim() || state.kat || state.stok !== "semua" || state.sort !== "awal"); }
+function update() {
+  const list = getVisible();
+  renderGrid(list);
+  $("count").textContent = products.length ? list.length + " dari " + products.length + " produk" : "";
+  $("resetBtn").hidden = !filtersActive();
+}
+function resetFilters() {
+  state.q = ""; state.kat = ""; state.stok = "semua"; state.sort = "awal";
+  $("q").value = ""; $("fKat").value = ""; $("fStok").value = "semua"; $("fSort").value = "awal";
+  update();
+}
+
+/* ============ Lapisan: fokus, scroll, penutupan ============ */
+const layers = [];
+let lockY = 0;
+function lockScroll() {
+  if (layers.length === 1) { lockY = window.scrollY; const b = document.body.style; b.position = "fixed"; b.top = -lockY + "px"; b.left = "0"; b.right = "0"; }
+}
+function unlockScroll() {
+  if (!layers.length) {
+    const b = document.body.style; b.position = b.top = b.left = b.right = "";
+    window.scrollTo({ top: lockY, behavior: "instant" });
+  }
+}
+function openLayer(el, focusEl) {
+  if (layers.some((l) => l.el === el)) return;
+  layers.push({ el, opener: document.activeElement });
+  el.hidden = false;
+  lockScroll();
+  document.body.classList.add("has-layer");
+  const f = focusEl || el.querySelector("button,a[href]");
+  if (f) f.focus({ preventScroll: true });
+}
+function closeLayer(el) {
+  const i = layers.findIndex((l) => l.el === el);
+  if (i < 0) return;
+  const [l] = layers.splice(i, 1);
+  el.hidden = true;
+  unlockScroll();
+  if (!layers.length) document.body.classList.remove("has-layer");
+  if (l.opener && l.opener.isConnected) l.opener.focus({ preventScroll: true });
+}
+function trapTab(e) {
+  const top = layers[layers.length - 1]; if (!top) return;
+  const f = [...top.el.querySelectorAll('button:not([disabled]),a[href],input,select')].filter((x) => x.offsetParent !== null);
+  if (!f.length) return;
+  const first = f[0], last = f[f.length - 1];
+  if (!top.el.contains(document.activeElement)) { e.preventDefault(); first.focus(); }
+  else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+  else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+}
+let toastTimer = 0;
+function toast(msg) {
+  const old = document.querySelector(".toast"); if (old) old.remove();
+  const t = h("div", { class: "toast", role: "status" }, msg);
+  document.body.append(t);
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => t.remove(), 2800);
+}
+
+/* ============ 9. MODAL DETAIL PRODUK ============ */
+function openDetail(id) {
+  const p = byId.get(id); if (!p) return;
+  const photo = h("button", { class: "photo-btn", type: "button", "data-action": "zoom", "data-id": p.id, "aria-label": "Perbesar foto " + p.nama }, makePhoto(p, true));
+  const media = h("div", "media", photo, saleBadge(p), stockBadge(p));
+  const info = h("div", "d-info",
+    h("div", "meta", [p.merek, p.kategori].filter(Boolean).join(" • ")),
+    h("h2", { id: "mTitle" }, p.nama),
+    priceBlock(p.pr),
+    p.deskripsi ? h("p", "desc", p.deskripsi) : null,
+    p.warna.length ? h("div", null, h("div", "hint", "Warna"), h("div", "chips", p.warna.map((w) => h("span", "chip", w)))) : null,
+    h("p", "hint", "Ketuk foto untuk memperbesar."),
+    h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis"));
+  $("mBody").replaceChildren(media, info);
+  openLayer($("modal"), $("mClose"));
+}
+
+/* ============ 10. LIGHTBOX DAN ZOOM FOTO ============ */
+const LB = { s: 1, x: 0, y: 0, pts: new Map(), d0: 0, s0: 1, drag: null, moved: false };
+function lbApply() { $("lbImg").style.transform = "translate(" + LB.x + "px," + LB.y + "px) scale(" + LB.s + ")"; }
+function lbSet(s) {
+  LB.s = clamp(s, 1, 5);
+  const im = $("lbImg"), mx = (im.clientWidth * (LB.s - 1)) / 2, my = (im.clientHeight * (LB.s - 1)) / 2;
+  LB.x = LB.s === 1 ? 0 : clamp(LB.x, -mx, mx); LB.y = LB.s === 1 ? 0 : clamp(LB.y, -my, my);
+  lbApply();
+}
+function openLightbox(id) {
+  const p = byId.get(id), src = p && safeImageSrc(p.gambar);
+  if (!src) { toast("Foto belum tersedia."); return; }
+  const t = new Image();
+  t.onload = () => {
+    const im = $("lbImg"); im.src = src; im.alt = p.nama;
+    LB.s = 1; LB.x = LB.y = 0; lbApply();
+    openLayer($("lb"), $("lbClose"));
+  };
+  t.onerror = () => toast("Foto belum tersedia.");
+  t.src = src;
+}
+function initLightbox() {
+  const st = $("lbStage");
+  st.addEventListener("pointerdown", (e) => {
+    LB.moved = false; LB.pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    try { st.setPointerCapture(e.pointerId); } catch (x) { /* abaikan */ }
+    if (LB.pts.size === 2) { const [a, b] = [...LB.pts.values()]; LB.d0 = Math.hypot(a.x - b.x, a.y - b.y) || 1; LB.s0 = LB.s; LB.drag = null; }
+    else LB.drag = { px: e.clientX, py: e.clientY, x: LB.x, y: LB.y };
+  });
+  st.addEventListener("pointermove", (e) => {
+    if (!LB.pts.has(e.pointerId)) return;
+    LB.pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (LB.pts.size === 2) {
+      const [a, b] = [...LB.pts.values()]; LB.moved = true;
+      lbSet(LB.s0 * (Math.hypot(a.x - b.x, a.y - b.y) / LB.d0));
+    } else if (LB.drag && LB.s > 1) {
+      const dx = e.clientX - LB.drag.px, dy = e.clientY - LB.drag.py;
+      if (Math.abs(dx) + Math.abs(dy) > 3) LB.moved = true;
+      LB.x = LB.drag.x + dx; LB.y = LB.drag.y + dy; lbSet(LB.s);
+    }
+  });
+  const up = (e) => { LB.pts.delete(e.pointerId); LB.drag = null; if (LB.pts.size === 1) { const [a] = [...LB.pts.values()]; LB.drag = { px: a.x, py: a.y, x: LB.x, y: LB.y }; } };
+  st.addEventListener("pointerup", up); st.addEventListener("pointercancel", up);
+  st.addEventListener("wheel", (e) => { e.preventDefault(); lbSet(LB.s * (e.deltaY < 0 ? 1.15 : 1 / 1.15)); }, { passive: false });
+  st.addEventListener("click", (e) => { if (e.target === st && !LB.moved) closeLayer($("lb")); });
+  $("lbImg").addEventListener("dblclick", () => lbSet(LB.s > 1 ? 1 : 2.5));
+  $("lbIn").addEventListener("click", () => lbSet(LB.s * 1.4));
+  $("lbOut").addEventListener("click", () => lbSet(LB.s / 1.4));
+  $("lbReset").addEventListener("click", () => { LB.x = LB.y = 0; lbSet(1); });
+  $("lbClose").addEventListener("click", () => closeLayer($("lb")));
+}
+
+/* ============ 11. SISTEM PEMESANAN ============ */
+function whatsappUrl(text) { return "https://wa.me/" + toIntlPhone(STORE_CONFIG.whatsapp) + "?text=" + encodeURIComponent(text); }
+const igUrl = () => "https://www.instagram.com/" + encodeURIComponent(String(STORE_CONFIG.instagram).replace(/^@/, "")) + "/";
+
+function productMessage(p) {
+  const pr = p.pr, L = ["Halo, saya tertarik memesan produk berikut:", ""];
+  L.push("Nama produk: " + p.nama, "ID produk: " + p.id);
+  L.push("Harga jual: " + (pr.jualValid ? fmt(pr.jual) : "mohon info harga"));
+  if (pr.hasDiscount) L.push("Harga asli: " + fmt(pr.asli), "Diskon: " + pr.persen + "%");
+  L.push("", "Apakah stok produk ini masih tersedia?");
+  return L.join("\n");
+}
+function openOrder(id) {
+  const p = id ? byId.get(id) : null;
+  if (id && (!p || !p.tersedia)) return;
+  const msg = p ? productMessage(p) : "Halo, saya ingin bertanya tentang produk di " + STORE_CONFIG.nama + ".";
+  const wa = h("a", { class: "btn primary", href: whatsappUrl(msg), target: "_blank", rel: "noopener noreferrer" }, "Chat WhatsApp");
+  const ig = h("a", { class: "btn", href: igUrl(), target: "_blank", rel: "noopener noreferrer" }, "Chat Instagram");
+  $("oBody").replaceChildren(
+    h("h2", { id: "oTitle" }, "Pesan lewat mana?"),
+    p ? h("p", "sum", p.nama + (p.pr.jualValid ? " • " + fmt(p.pr.jual) : "")) : h("p", "sum", "Tanya produk atau stok ke penjual."),
+    h("div", "stack", wa, ig,
+      h("p", "hint", p ? "Di Instagram, kirim nama produk yang ingin dibeli: " + p.nama + "." : "Di Instagram, tulis produk yang ingin ditanyakan."),
+      h("p", "hint", "Ketersediaan stok dikonfirmasi penjual.")));
+  openLayer($("order"), wa);
+}
+
+/* ============ 12. NAVIGASI MOBILE ============ */
+function setMenu(open) {
+  $("nav").classList.toggle("open", open);
+  $("menuBtn").setAttribute("aria-expanded", String(open));
+  $("menuBtn").setAttribute("aria-label", open ? "Tutup menu" : "Buka menu");
+}
+const menuOpen = () => $("nav").classList.contains("open");
+
+/* ============ 13. EVENT LISTENERS ============ */
+function bindEvents() {
+  // delegasi klik untuk kartu, modal, dan area kosong
+  document.addEventListener("click", (e) => {
+    const t = e.target.closest("[data-action]"); if (!t || t.disabled) return;
+    const id = t.dataset.id;
+    switch (t.dataset.action) {
+      case "detail": openDetail(id); break;
+      case "zoom": openLightbox(id); break;
+      case "buy": openOrder(id); break;
+      case "contact": openOrder(null); break;
+      case "reset": resetFilters(); break;
+    }
+  });
+  let timer = 0;
+  $("q").addEventListener("input", (e) => { clearTimeout(timer); timer = setTimeout(() => { state.q = e.target.value; update(); }, 120); });
+  $("fKat").addEventListener("change", (e) => { state.kat = e.target.value; update(); });
+  $("fStok").addEventListener("change", (e) => { state.stok = e.target.value; update(); });
+  $("fSort").addEventListener("change", (e) => { state.sort = e.target.value; update(); });
+  $("resetBtn").addEventListener("click", resetFilters);
+  $("searchBtn").addEventListener("click", () => { setMenu(false); $("koleksi").scrollIntoView(); $("q").focus({ preventScroll: true }); });
+  $("contactBtn").addEventListener("click", () => { setMenu(false); openOrder(null); });
+  $("fab").addEventListener("click", () => openOrder(null));
+  $("menuBtn").addEventListener("click", () => setMenu(!menuOpen()));
+  $("nav").addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  $("mClose").addEventListener("click", () => closeLayer($("modal")));
+  $("oClose").addEventListener("click", () => closeLayer($("order")));
+  // klik backdrop menutup, klik isi dialog tidak
+  for (const id of ["modal", "order"]) $(id).addEventListener("click", (e) => { if (e.target === $(id)) closeLayer($(id)); });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if (layers.length) closeLayer(layers[layers.length - 1].el);
+      else if (menuOpen()) { setMenu(false); $("menuBtn").focus(); }
+    } else if (e.key === "Tab") trapTab(e);
+  });
+  // Cegah zoom halaman (foto tetap bisa di-zoom lewat lightbox)
+  for (const ev of ["gesturestart", "gesturechange", "gestureend"]) document.addEventListener(ev, (e) => e.preventDefault());
+  document.addEventListener("touchmove", (e) => { if (e.touches.length > 1) e.preventDefault(); }, { passive: false });
+  window.addEventListener("wheel", (e) => { if (e.ctrlKey && !e.target.closest("#lbStage")) e.preventDefault(); }, { passive: false });
+  initLightbox();
+}
+
+/* ============ 14. INISIALISASI ============ */
+function initStatic() {
+  const C = STORE_CONFIG;
+  document.documentElement.style.setProperty("--accent", C.aksen);
+  $("brandName").textContent = C.nama;
+  $("heroTitle").textContent = C.slogan;
+  $("heroDesc").textContent = C.deskripsi;
+  $("shipText").textContent = C.pengiriman;
+  $("fName").textContent = C.nama; $("fDesc").textContent = C.deskripsi;
+  $("fWa").href = whatsappUrl("Halo, saya ingin bertanya tentang produk di " + C.nama + ".");
+  $("fIg").href = igUrl();
+  $("copy").textContent = "© " + new Date().getFullYear() + " " + C.nama + ". " + C.footerTeks;
+  $("fab").hidden = !C.tombolWhatsAppMengambang;
+  const perks = $("perks"), act = (C.fitur || []).filter((f) => f && f.aktif);
+  act.forEach((f) => perks.append(h("div", "perk", h("strong", null, f.judul), h("span", null, f.teks))));
+  perks.hidden = !act.length;
+}
+function initHero() {
+  const box = $("heroVisual");
+  const p = products.find((x) => x.unggulan && x.tersedia) || products.find((x) => x.unggulan) || products[0];
+  if (!p) { box.hidden = true; return; }
+  box.append(h("button", { class: "photo-btn", type: "button", "data-action": "detail", "data-id": p.id, "aria-label": "Lihat detail " + p.nama }, makePhoto(p, true)),
+    h("div", "hero-cap", p.nama + (p.pr.jualValid ? " • " + fmt(p.pr.jual) : "")));
+}
+function init() {
+  try {
+    initStatic();
+    products = normalizeProducts(PRODUCTS);
+    products.forEach((p) => byId.set(p.id, p));
+    const sel = $("fKat");
+    [...new Set(products.map((p) => p.kategori))].sort().forEach((k) => sel.append(h("option", { value: k }, k)));
+    initHero();
+    bindEvents();
+    update();
+  } catch (err) {
+    console.error("Gagal memulai website:", err);
+    $("grid").replaceChildren(h("div", "empty", h("h3", null, "Katalog gagal dimuat"), h("p", null, "Muat ulang halaman, atau hubungi kami lewat WhatsApp.")));
+  }
+}
+init();
+</script>
+</body>
+</html>
