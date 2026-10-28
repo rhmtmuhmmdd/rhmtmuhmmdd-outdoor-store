@@ -115,8 +115,9 @@ a{color:inherit}
 .arrow:active{transform:translateY(-50%) scale(.92)}
 .arrow.prev{left:6px}.arrow.next{right:6px}
 .lb-count{position:absolute;top:0;left:0;z-index:3;margin:max(12px,var(--sat)) 0 0 max(12px,var(--sal));padding:6px 12px;border-radius:999px;background:rgba(31,33,32,.85);color:#fff;font-weight:600;font-size:14px}
-.b-stock{bottom:8px;left:8px;background:#fff;color:var(--ok);border:1px solid #BFD8C4}
-.b-stock.out{color:#7A1F17;border-color:#E8C3BF;background:#FDF1F0}
+.b-stock{bottom:8px;left:8px;background:#E4F4E8;color:#1E6B34;border:1px solid #A9D4B3}
+.b-stock.out{color:#A3201A;border-color:#F0B8B3;background:#FDE8E6}
+.b-stock.soon{color:#7A5200;border-color:#EBD58A;background:#FFF3C4}
 .card-body{display:flex;flex-direction:column;gap:6px;padding:12px;flex:1}
 .meta{font-size:12px;color:var(--muted);overflow-wrap:anywhere}
 .card h3{font-size:15px;line-height:1.3;font-weight:700;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:2.6em}
@@ -231,7 +232,7 @@ body.has-layer .fab{display:none}
     <div class="toolbar" role="search">
       <div class="search"><label for="q">Cari produk</label><input id="q" type="search" placeholder="Nama, merek, kategori, warna" autocomplete="off"></div>
       <div><label for="fKat">Kategori</label><select id="fKat"><option value="">Semua kategori</option></select></div>
-      <div><label for="fStok">Ketersediaan</label><select id="fStok"><option value="semua">Semua</option><option value="tersedia">Tersedia</option><option value="habis">Stok habis</option></select></div>
+      <div><label for="fStok">Ketersediaan</label><select id="fStok"><option value="semua">Semua</option><option value="tersedia">Tersedia</option><option value="habis">Stok habis</option><option value="segera">Segera tersedia</option></select></div>
       <div><label for="fSort">Urutkan</label>
         <select id="fSort"><option value="awal">Urutan toko</option><option value="termurah">Harga termurah</option><option value="tertinggi">Harga tertinggi</option><option value="diskon">Diskon terbesar</option><option value="terbaru">Terbaru</option></select></div>
     </div>
@@ -323,22 +324,22 @@ const STORE_CONFIG = {
    Edit produk   : ubah nilainya langsung. Harga HARUS angka tanpa titik (450000).
    gambar        : daftar nama file foto, mis. ["produk0101.jpg", "produk0102.jpg", "produk0103.jpg"] (1 sampai 10 foto,
                    terpisah dari nama produk). Nama file harus persis sama, huruf besar/kecil dibedakan di hosting.
-   status        : "tersedia" atau "habis". Stok di sini diubah manual, tidak real-time.
+   status        : "tersedia" (hijau), "habis" (merah), atau "segera" (kuning, belum bisa dipesan). Stok di sini diubah manual, tidak real-time.
    kondisi       : "baru" atau "preloved" (barang bekas; "bekas" juga dikenali). Kosongkan untuk tanpa label.
    catatanKondisi: (opsional) keterangan singkat kondisi, tampil di detail produk. Tulis sesuai kondisi sebenarnya.
    Diskon dihitung otomatis dari hargaAsli dan hargaJual. */
 const PRODUCTS = [
   /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: produk0101-0103 = hitam, produk0201-0203 = biru, produk0301-0303 = merah. */
   { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0101.jpg", "produk0102.jpg", "produk0103.jpg"],
-    hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "Tersedia",
+    hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "segera",
     deskripsi: "Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Hitam"], unggulan: true, tanggalDitambahkan: "2026-10-29" },
   { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0201.jpg", "produk0202.jpg", "produk0203.jpg"],
-    hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "Stok Habis",
+    hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "habis",
     deskripsi: "Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Biru"], unggulan: false, tanggalDitambahkan: "2026-10-29" },
   { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0301.jpg", "produk0302.jpg", "produk0303.jpg"],
-    hargaAsli: 609000, hargaJual: 550000, stok: 5, status: "Tersedia",
+    hargaAsli: 609000, hargaJual: 550000, stok: 5, status: "segera",
     deskripsi: "Eiger Pacemaker 10L warna merah. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Merah"], unggulan: false, tanggalDitambahkan: "2026-10-29" }
 ];
@@ -420,7 +421,9 @@ function normalizeProducts(list) {
         tanggal: Date.parse(raw.tanggalDitambahkan) || -Infinity,
         stok
       };
-      p.tersedia = norm(raw.status) === "tersedia" && stok > 0; // status tidak valid dianggap habis
+      const st = norm(raw.status).replace(/[^a-z]/g, "");
+      p.status = st === "segera" || st === "segeratersedia" ? "segera" : st === "tersedia" && stok > 0 ? "tersedia" : "habis"; // status tidak valid dianggap habis
+      p.tersedia = p.status === "tersedia";
       p.pr = calculatePricing(p);
       out.push(p);
     } catch (e) { console.warn("Produk #" + (i + 1) + " dilewati: " + e.message, raw); }
@@ -492,7 +495,9 @@ function priceBlock(pr) {
   if (pr.hasDiscount) d.append(h("div", "was-row", h("span", "sr", "Harga asli "), h("s", "was", fmt(pr.asli))));
   return d;
 }
-function stockBadge(p) { return h("span", "badge b-stock" + (p.tersedia ? "" : " out"), p.tersedia ? "Tersedia" : "Stok Habis"); }
+const STOCK_UI = { tersedia: ["", "Stok Tersedia"], habis: ["out", "Stok Habis"], segera: ["soon", "Segera Tersedia"] };
+const stockUI = (p) => STOCK_UI[p.status] || STOCK_UI.habis;
+function stockBadge(p) { return h("span", "badge b-stock " + stockUI(p)[0], stockUI(p)[1]); }
 function saleBadge(p) {
   return p.pr.hasDiscount ? h("span", { class: "badge b-sale", "aria-label": "Diskon " + p.pr.persen + " persen" }, "-" + p.pr.persen + "%") : null;
 }
@@ -501,7 +506,7 @@ function buildCard(p, i) {
   const media = makeSlider(p, { action: "detail", label: "Lihat detail " + p.nama, eager: i < 2 });
   [saleBadge(p), conditionBadge(p), stockBadge(p)].forEach((x) => x && media.append(x));
   const meta = [p.merek, p.kategori].filter(Boolean).join(" • ");
-  const buy = h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis");
+  const buy = h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : stockUI(p)[1]);
   const det = h("button", { class: "btn", type: "button", "data-action": "detail", "data-id": p.id }, "Lihat Detail");
   return h("article", "card", media, h("div", "card-body", h("div", "meta", meta), h("h3", null, p.nama), priceBlock(p.pr), h("div", "actions", det, buy)));
 }
@@ -536,8 +541,7 @@ function getVisible() {
   const q = norm(state.q).trim();
   return products.filter((p) => {
     if (state.kat && p.kategori !== state.kat) return false;
-    if (state.stok === "tersedia" && !p.tersedia) return false;
-    if (state.stok === "habis" && p.tersedia) return false;
+    if (state.stok !== "semua" && p.status !== state.stok) return false;
     return !q || norm([p.nama, p.merek, p.kategori, p.deskripsi, p.warna.join(" ")].join(" ")).includes(q);
   }).sort(SORTS[state.sort] || SORTS.awal);
 }
@@ -615,7 +619,7 @@ function openDetail(id) {
     p.deskripsi ? h("p", "desc", p.deskripsi) : null,
     p.warna.length ? h("div", null, h("div", "hint", "Warna"), h("div", "chips", p.warna.map((w) => h("span", "chip", w)))) : null,
     h("p", "hint", "Ketuk foto untuk memperbesar."),
-    h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis"));
+    h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : stockUI(p)[1]));
   $("mBody").replaceChildren(media, info);
   openLayer($("modal"), $("mClose"));
 }
