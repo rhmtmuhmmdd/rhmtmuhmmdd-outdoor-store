@@ -687,19 +687,18 @@ function initLightbox() {
 function whatsappUrl(text) { return "https://wa.me/" + toIntlPhone(STORE_CONFIG.whatsapp) + "?text=" + encodeURIComponent(text); }
 const igUrl = () => "https://www.instagram.com/" + encodeURIComponent(String(STORE_CONFIG.instagram).replace(/^@/, "")) + "/";
 
+const GENERIC_MSG = "Halo kak, saya ingin bertanya tentang produk yang dijual.";
 function productMessage(p) {
-  const pr = p.pr, L = ["Halo, saya tertarik memesan produk berikut:", ""];
-  L.push("Nama produk: " + p.nama, "ID produk: " + p.id);
+  const L = ["Halo kak, saya tertarik memesan produk berikut:", "", "Nama produk: " + p.nama];
   if (conditionLabel(p)) L.push("Kondisi: " + conditionLabel(p));
-  L.push("Harga jual: " + (pr.jualValid ? fmt(pr.jual) : "mohon info harga"));
-  if (pr.hasDiscount) L.push("Harga asli: " + fmt(pr.asli), "Diskon: " + pr.persen + "%");
+  L.push("Harga jual: " + (p.pr.jualValid ? fmt(p.pr.jual) : "mohon info harga"));
   L.push("", "Apakah stok produk ini masih tersedia?");
   return L.join("\n");
 }
 function openOrder(id) {
   const p = id ? byId.get(id) : null;
   if (id && (!p || !p.tersedia)) return;
-  const msg = p ? productMessage(p) : "Halo, saya ingin bertanya tentang produk di " + STORE_CONFIG.nama + ".";
+  const msg = p ? productMessage(p) : GENERIC_MSG;
   const wa = h("a", { class: "btn primary", href: whatsappUrl(msg), target: "_blank", rel: "noopener noreferrer" }, "Chat WhatsApp");
   const ig = h("a", { class: "btn", href: igUrl(), target: "_blank", rel: "noopener noreferrer" }, "Chat Instagram");
   $("oBody").replaceChildren(
@@ -774,7 +773,7 @@ function initStatic() {
   $("heroDesc").textContent = C.deskripsi;
   $("shipText").textContent = C.pengiriman;
   $("fName").textContent = C.nama; $("fDesc").textContent = C.deskripsi;
-  $("fWa").href = whatsappUrl("Halo, saya ingin bertanya tentang produk di " + C.nama + ".");
+  $("fWa").href = whatsappUrl(GENERIC_MSG);
   $("fIg").href = igUrl();
   $("copy").textContent = "© " + new Date().getFullYear() + " " + C.nama + ". " + C.footerTeks;
   $("fab").hidden = !C.tombolWhatsAppMengambang;
