@@ -107,6 +107,8 @@ a{color:inherit}
 .photo img{position:relative}
 .badge{position:absolute;z-index:2;padding:3px 9px;border-radius:999px;font-size:12px;font-weight:700;line-height:1.4}
 .b-sale{top:8px;left:8px;background:var(--sale);color:#fff}
+.b-cond{top:8px;right:8px;background:var(--accent);color:#fff}
+.b-cond.pre{background:#fff;color:var(--ink);border:1px solid #CFC8B6}
 .b-stock{bottom:8px;left:8px;background:#fff;color:var(--ok);border:1px solid #BFD8C4}
 .b-stock.out{color:#7A1F17;border-color:#E8C3BF;background:#FDF1F0}
 .card-body{display:flex;flex-direction:column;gap:6px;padding:12px;flex:1}
@@ -297,6 +299,7 @@ const STORE_CONFIG = {
   pengiriman: "Informasi ongkir dan estimasi pengiriman diberikan penjual saat Anda memesan.",
   aksen: "#3F4D2F",                        // warna aksen utama
   tombolWhatsAppMengambang: true,
+  kondisiLabel: { baru: "Baru", preloved: "Pre-loved" }, // teks label kondisi, boleh diganti (mis. "Pre-loved Pilihan")
   fitur: [                                 // aktif: false untuk menyembunyikan
     { aktif: true, judul: "Pemesanan mudah", teks: "Cukup satu ketukan untuk chat." },
     { aktif: true, judul: "Harga transparan", teks: "Harga asli dan hemat ditampilkan." },
@@ -311,20 +314,22 @@ const STORE_CONFIG = {
    Edit produk   : ubah nilainya langsung. Harga HARUS angka tanpa titik (450000).
    gambar        : nama file foto, terpisah dari nama produk.
    status        : "tersedia" atau "habis". Stok di sini diubah manual, tidak real-time.
+   kondisi       : "baru" atau "preloved" (barang bekas; "bekas" juga dikenali). Kosongkan untuk tanpa label.
+   catatanKondisi: (opsional) keterangan singkat kondisi, tampil di detail produk. Tulis sesuai kondisi sebenarnya.
    Diskon dihitung otomatis dari hargaAsli dan hargaJual. */
 const PRODUCTS = [
   /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: Produk01 = hitam, Produk02 = biru, Produk03 = merah. */
-  { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk01.jpg",
+  { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk01.jpg",
     hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "tersedia",
-    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    deskripsi: "Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Hitam"], unggulan: true, tanggalDitambahkan: "2026-10-29" },
-  { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk02.jpg",
+  { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk02.jpg",
     hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "tersedia",
-    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    deskripsi: "Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Biru"], unggulan: false, tanggalDitambahkan: "2026-10-29" },
-  { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", gambar: "Produk03.jpg",
+  { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk03.jpg",
     hargaAsli: 609000, hargaJual: 550000, stok: 5, status: "tersedia",
-    deskripsi: "Kondisi: baru. Eiger Pacemaker 10L warna merah. Edit deskripsi ini bila ingin menambah spesifikasi.",
+    deskripsi: "Eiger Pacemaker 10L warna merah. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Merah"], unggulan: false, tanggalDitambahkan: "2026-10-29" }
 ];
 
@@ -366,6 +371,16 @@ const fmt = (n) => RP.format(n).replace(/\s/g, ""); // Rp605.000
 /* ============ 5. VALIDASI DATA ============ */
 const validPrice = (v) => (typeof v === "number" && Number.isFinite(v) && v > 0 ? Math.round(v) : null);
 
+function normCondition(v) {
+  const k = norm(v).replace(/[^a-z]/g, "");
+  return k === "baru" ? "baru" : k === "preloved" || k === "bekas" ? "preloved" : "";
+}
+function conditionLabel(p) { return p.kondisi ? ((STORE_CONFIG.kondisiLabel || {})[p.kondisi] || "") : ""; }
+function conditionBadge(p) {
+  const l = conditionLabel(p);
+  return l ? h("span", "badge b-cond" + (p.kondisi === "preloved" ? " pre" : ""), l) : null;
+}
+
 function normalizeProducts(list) {
   const seen = new Set(), out = [];
   if (!Array.isArray(list)) { console.error("PRODUCTS harus berupa array."); return out; }
@@ -387,6 +402,8 @@ function normalizeProducts(list) {
         deskripsi: typeof raw.deskripsi === "string" ? raw.deskripsi : "",
         warna: Array.isArray(raw.warna) ? raw.warna.filter((w) => typeof w === "string" && w.trim()) : [],
         unggulan: raw.unggulan === true,
+        kondisi: normCondition(raw.kondisi),
+        catatanKondisi: typeof raw.catatanKondisi === "string" ? raw.catatanKondisi.trim() : "",
         tanggal: Date.parse(raw.tanggalDitambahkan) || -Infinity,
         stok
       };
@@ -431,7 +448,7 @@ function priceBlock(pr) {
   const d = h("div", "price");
   if (!pr.jualValid) { d.append(h("div", "now ask", "Tanya harga")); return d; }
   d.append(h("div", "now", fmt(pr.jual)));
-  if (pr.hasDiscount) d.append(h("div", "was-row", h("span", "sr", "Harga asli "), h("s", "was", fmt(pr.asli)), h("span", "save", "Hemat " + fmt(pr.hemat))));
+  if (pr.hasDiscount) d.append(h("div", "was-row", h("span", "sr", "Harga asli "), h("s", "was", fmt(pr.asli))));
   return d;
 }
 function stockBadge(p) { return h("span", "badge b-stock" + (p.tersedia ? "" : " out"), p.tersedia ? "Tersedia" : "Stok Habis"); }
@@ -441,7 +458,7 @@ function saleBadge(p) {
 
 function buildCard(p, i) {
   const photoBtn = h("button", { class: "photo-btn", type: "button", "data-action": "detail", "data-id": p.id, "aria-label": "Lihat detail " + p.nama }, makePhoto(p, i < 2));
-  const media = h("div", "media", photoBtn, saleBadge(p), stockBadge(p));
+  const media = h("div", "media", photoBtn, saleBadge(p), conditionBadge(p), stockBadge(p));
   const meta = [p.merek, p.kategori].filter(Boolean).join(" • ");
   const buy = h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis");
   const det = h("button", { class: "btn", type: "button", "data-action": "detail", "data-id": p.id }, "Lihat Detail");
@@ -552,6 +569,8 @@ function openDetail(id) {
     h("div", "meta", [p.merek, p.kategori].filter(Boolean).join(" • ")),
     h("h2", { id: "mTitle" }, p.nama),
     priceBlock(p.pr),
+    conditionLabel(p) ? h("div", "chips", h("span", "chip", "Kondisi: " + conditionLabel(p))) : null,
+    p.catatanKondisi ? h("p", "hint", p.catatanKondisi) : null,
     p.deskripsi ? h("p", "desc", p.deskripsi) : null,
     p.warna.length ? h("div", null, h("div", "hint", "Warna"), h("div", "chips", p.warna.map((w) => h("span", "chip", w)))) : null,
     h("p", "hint", "Ketuk foto untuk memperbesar."),
@@ -619,6 +638,7 @@ const igUrl = () => "https://www.instagram.com/" + encodeURIComponent(String(STO
 function productMessage(p) {
   const pr = p.pr, L = ["Halo, saya tertarik memesan produk berikut:", ""];
   L.push("Nama produk: " + p.nama, "ID produk: " + p.id);
+  if (conditionLabel(p)) L.push("Kondisi: " + conditionLabel(p));
   L.push("Harga jual: " + (pr.jualValid ? fmt(pr.jual) : "mohon info harga"));
   if (pr.hasDiscount) L.push("Harga asli: " + fmt(pr.asli), "Diskon: " + pr.persen + "%");
   L.push("", "Apakah stok produk ini masih tersedia?");
