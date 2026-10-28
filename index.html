@@ -11,8 +11,8 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="rhmtmuhmmdd outdoor | Katalog Tas Premium">
 <meta property="og:description" content="Katalog tas premium untuk perjalanan dan aktivitas outdoor. Pesan lewat WhatsApp atau Instagram.">
-<!-- Untuk preview tautan, sebagian aplikasi butuh alamat gambar lengkap, mis. https://domainmu.com/Produk01.jpg -->
-<meta property="og:image" content="Produk01.jpg">
+<!-- Untuk preview tautan, sebagian aplikasi butuh alamat gambar lengkap, mis. https://domainmu.com/produk0101.jpg -->
+<meta property="og:image" content="produk0101.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233F4D2F'/%3E%3Cpath d='M9 22V12a7 7 0 0 1 14 0v10z' fill='none' stroke='%23FBF8F1' stroke-width='2.4'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -98,7 +98,7 @@ a{color:inherit}
 @media (min-width:1100px){.grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}}
 .card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden;min-width:0;animation:fade .25s ease-out;transition:transform .2s,box-shadow .2s}
 @media (hover:hover){.card:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(31,33,32,.07),0 14px 28px rgba(31,33,32,.11)}}
-.media{position:relative}
+.media{position:relative;touch-action:pan-y}
 .photo-btn{display:block;width:100%;aspect-ratio:4/5;padding:0;border:0;background:#F1EDE2;cursor:zoom-in;position:relative}
 .photo{position:absolute;inset:0}
 .photo img{width:100%;height:100%;object-fit:contain;background:#F1EDE2}
@@ -109,6 +109,12 @@ a{color:inherit}
 .b-sale{top:8px;left:8px;background:var(--sale);color:#fff}
 .b-cond{top:8px;right:8px;background:var(--accent);color:#fff}
 .b-cond.pre{background:#fff;color:var(--ink);border:1px solid #CFC8B6}
+.b-count{bottom:8px;right:8px;background:rgba(31,33,32,.78);color:#fff}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;width:34px;height:34px;padding:0 0 3px;border:0;border-radius:50%;background:rgba(255,255,255,.88);color:var(--ink);font:400 24px/1 var(--font);display:grid;place-items:center;cursor:pointer;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:background-color .15s,transform .12s}
+.arrow:hover{background:#fff}
+.arrow:active{transform:translateY(-50%) scale(.92)}
+.arrow.prev{left:6px}.arrow.next{right:6px}
+.lb-count{position:absolute;top:0;left:0;z-index:3;margin:max(12px,var(--sat)) 0 0 max(12px,var(--sal));padding:6px 12px;border-radius:999px;background:rgba(31,33,32,.85);color:#fff;font-weight:600;font-size:14px}
 .b-stock{bottom:8px;left:8px;background:#fff;color:var(--ok);border:1px solid #BFD8C4}
 .b-stock.out{color:#7A1F17;border-color:#E8C3BF;background:#FDF1F0}
 .card-body{display:flex;flex-direction:column;gap:6px;padding:12px;flex:1}
@@ -274,11 +280,14 @@ body.has-layer .fab{display:none}
 <!-- Lightbox foto -->
 <div class="layer lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Zoom foto produk">
   <div class="lb-stage" id="lbStage"><img id="lbImg" alt="" draggable="false"></div>
+  <span class="lb-count" id="lbCount" hidden></span>
   <div class="lb-top"><button class="btn" id="lbClose" type="button" aria-label="Tutup foto">Tutup</button></div>
   <div class="lb-bar">
+    <button class="btn" id="lbPrev" type="button" aria-label="Foto sebelumnya" hidden>‹</button>
     <button class="btn" id="lbOut" type="button" aria-label="Perkecil foto">−</button>
     <button class="btn" id="lbReset" type="button" aria-label="Atur ulang zoom">Reset</button>
     <button class="btn" id="lbIn" type="button" aria-label="Perbesar foto">+</button>
+    <button class="btn" id="lbNext" type="button" aria-label="Foto berikutnya" hidden>›</button>
   </div>
 </div>
 
@@ -312,22 +321,23 @@ const STORE_CONFIG = {
    Tambah produk : salin satu blok { ... }, beri id BARU yang unik, lalu isi datanya.
    Hapus produk  : hapus blok-nya (atau beri status "habis" bila hanya kosong sementara).
    Edit produk   : ubah nilainya langsung. Harga HARUS angka tanpa titik (450000).
-   gambar        : nama file foto, terpisah dari nama produk.
+   gambar        : daftar nama file foto, mis. ["produk0101.jpg", "produk0102.jpg", "produk0103.jpg"] (1 sampai 10 foto,
+                   terpisah dari nama produk). Nama file harus persis sama, huruf besar/kecil dibedakan di hosting.
    status        : "tersedia" atau "habis". Stok di sini diubah manual, tidak real-time.
    kondisi       : "baru" atau "preloved" (barang bekas; "bekas" juga dikenali). Kosongkan untuk tanpa label.
    catatanKondisi: (opsional) keterangan singkat kondisi, tampil di detail produk. Tulis sesuai kondisi sebenarnya.
    Diskon dihitung otomatis dari hargaAsli dan hargaJual. */
 const PRODUCTS = [
-  /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: Produk01 = hitam, Produk02 = biru, Produk03 = merah. */
-  { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk01.jpg",
+  /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: produk0101-0103 = hitam, produk0201-0203 = biru, produk0301-0303 = merah. */
+  { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0101.jpg", "produk0102.jpg", "produk0103.jpg"],
     hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "tersedia",
     deskripsi: "Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Hitam"], unggulan: true, tanggalDitambahkan: "2026-10-29" },
-  { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk02.jpg",
+  { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0201.jpg", "produk0202.jpg", "produk0203.jpg"],
     hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "tersedia",
     deskripsi: "Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Biru"], unggulan: false, tanggalDitambahkan: "2026-10-29" },
-  { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: "Produk03.jpg",
+  { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0301.jpg", "produk0302.jpg", "produk0303.jpg"],
     hargaAsli: 609000, hargaJual: 550000, stok: 5, status: "tersedia",
     deskripsi: "Eiger Pacemaker 10L warna merah. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Merah"], unggulan: false, tanggalDitambahkan: "2026-10-29" }
@@ -356,6 +366,9 @@ function toIntlPhone(n) {
 }
 function safeUrl(u) { // hanya izinkan https
   try { const x = new URL(u); return x.protocol === "https:" ? x.href : null; } catch (e) { return null; }
+}
+function toPhotoList(v) { // gambar boleh satu nama file atau daftar
+  return (Array.isArray(v) ? v : [v]).map(safeImageSrc).filter(Boolean).slice(0, 10);
 }
 function safeImageSrc(src) { // nama file relatif atau https
   if (typeof src !== "string" || !src.trim()) return null;
@@ -398,7 +411,7 @@ function normalizeProducts(list) {
         idx: out.length, id, nama,
         merek: typeof raw.merek === "string" ? raw.merek.trim() : "",
         kategori: typeof raw.kategori === "string" && raw.kategori.trim() ? raw.kategori.trim() : "Lainnya",
-        gambar: raw.gambar, hargaAsli: raw.hargaAsli, hargaJual: raw.hargaJual,
+        fotos: toPhotoList(raw.gambar), hargaAsli: raw.hargaAsli, hargaJual: raw.hargaJual,
         deskripsi: typeof raw.deskripsi === "string" ? raw.deskripsi : "",
         warna: Array.isArray(raw.warna) ? raw.warna.filter((w) => typeof w === "string" && w.trim()) : [],
         unggulan: raw.unggulan === true,
@@ -430,12 +443,11 @@ function calculatePricing(p) {
 let products = [];
 const byId = new Map();
 
-function makePhoto(p, eager) {
+function makePhoto(src, alt, eager) {
   const box = h("div", "photo", h("div", "ph", "Foto belum tersedia"));
-  const src = safeImageSrc(p.gambar);
   if (src) {
     const im = new Image();
-    im.alt = p.nama; im.decoding = "async"; im.loading = eager ? "eager" : "lazy";
+    im.alt = alt; im.decoding = "async"; im.loading = eager ? "eager" : "lazy";
     if (eager) im.fetchPriority = "high";
     im.addEventListener("load", () => box.classList.add("loaded"), { once: true });
     im.addEventListener("error", () => im.remove(), { once: true }); // fallback tetap placeholder, tanpa loop
@@ -443,6 +455,35 @@ function makePhoto(p, eager) {
     box.append(im);
   }
   return box;
+}
+/* Foto geser: tombol panah, swipe, dan penghitung "1/3". Foto lain baru dimuat saat ditampilkan. */
+function makeSlider(p, o) {
+  const n = Math.max(1, p.fotos.length);
+  const btn = h("button", { class: "photo-btn", type: "button", "data-action": o.action, "data-id": p.id, "data-i": "0", "aria-label": o.label });
+  const slides = [];
+  for (let i = 0; i < n; i++) {
+    const box = makePhoto(p.fotos[i], n > 1 ? p.nama + " - foto " + (i + 1) : p.nama, o.eager && i === 0);
+    if (i) box.hidden = true;
+    slides.push(box); btn.append(box);
+  }
+  const media = h("div", "media", btn);
+  if (n < 2) return media;
+  let cur = 0, sx = null, sy = 0, swiped = false;
+  const count = h("span", { class: "badge b-count", "aria-hidden": "true" }, "1/" + n);
+  const go = (d) => { slides[cur].hidden = true; cur = (cur + d + n) % n; slides[cur].hidden = false; btn.dataset.i = String(cur); count.textContent = (cur + 1) + "/" + n; };
+  const prev = h("button", { class: "arrow prev", type: "button", "aria-label": "Foto sebelumnya" }, "\u2039");
+  const next = h("button", { class: "arrow next", type: "button", "aria-label": "Foto berikutnya" }, "\u203A");
+  prev.addEventListener("click", () => go(-1)); next.addEventListener("click", () => go(1));
+  media.append(prev, next, count);
+  media.addEventListener("pointerdown", (e) => { sx = e.clientX; sy = e.clientY; swiped = false; });
+  media.addEventListener("pointerup", (e) => {
+    if (sx === null) return;
+    const dx = e.clientX - sx, dy = e.clientY - sy; sx = null;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) { swiped = true; go(dx < 0 ? 1 : -1); }
+  });
+  media.addEventListener("pointercancel", () => { sx = null; });
+  btn.addEventListener("click", (e) => { if (swiped) { swiped = false; e.stopPropagation(); e.preventDefault(); } }, true);
+  return media;
 }
 function priceBlock(pr) {
   const d = h("div", "price");
@@ -457,8 +498,8 @@ function saleBadge(p) {
 }
 
 function buildCard(p, i) {
-  const photoBtn = h("button", { class: "photo-btn", type: "button", "data-action": "detail", "data-id": p.id, "aria-label": "Lihat detail " + p.nama }, makePhoto(p, i < 2));
-  const media = h("div", "media", photoBtn, saleBadge(p), conditionBadge(p), stockBadge(p));
+  const media = makeSlider(p, { action: "detail", label: "Lihat detail " + p.nama, eager: i < 2 });
+  [saleBadge(p), conditionBadge(p), stockBadge(p)].forEach((x) => x && media.append(x));
   const meta = [p.merek, p.kategori].filter(Boolean).join(" • ");
   const buy = h("button", { class: "btn primary", type: "button", "data-action": "buy", "data-id": p.id, disabled: !p.tersedia }, p.tersedia ? "Beli Sekarang" : "Stok Habis");
   const det = h("button", { class: "btn", type: "button", "data-action": "detail", "data-id": p.id }, "Lihat Detail");
@@ -563,8 +604,8 @@ function toast(msg) {
 /* ============ 9. MODAL DETAIL PRODUK ============ */
 function openDetail(id) {
   const p = byId.get(id); if (!p) return;
-  const photo = h("button", { class: "photo-btn", type: "button", "data-action": "zoom", "data-id": p.id, "aria-label": "Perbesar foto " + p.nama }, makePhoto(p, true));
-  const media = h("div", "media", photo, saleBadge(p), stockBadge(p));
+  const media = makeSlider(p, { action: "zoom", label: "Perbesar foto " + p.nama, eager: true });
+  [saleBadge(p), stockBadge(p)].forEach((x) => x && media.append(x));
   const info = h("div", "d-info",
     h("div", "meta", [p.merek, p.kategori].filter(Boolean).join(" • ")),
     h("h2", { id: "mTitle" }, p.nama),
@@ -580,7 +621,7 @@ function openDetail(id) {
 }
 
 /* ============ 10. LIGHTBOX DAN ZOOM FOTO ============ */
-const LB = { s: 1, x: 0, y: 0, pts: new Map(), d0: 0, s0: 1, drag: null, moved: false };
+const LB = { p: null, i: 0, s: 1, x: 0, y: 0, pts: new Map(), d0: 0, s0: 1, drag: null, moved: false };
 function lbApply() { $("lbImg").style.transform = "translate(" + LB.x + "px," + LB.y + "px) scale(" + LB.s + ")"; }
 function lbSet(s) {
   LB.s = clamp(s, 1, 5);
@@ -588,18 +629,27 @@ function lbSet(s) {
   LB.x = LB.s === 1 ? 0 : clamp(LB.x, -mx, mx); LB.y = LB.s === 1 ? 0 : clamp(LB.y, -my, my);
   lbApply();
 }
-function openLightbox(id) {
-  const p = byId.get(id), src = p && safeImageSrc(p.gambar);
-  if (!src) { toast("Foto belum tersedia."); return; }
+function lbLoad(i, first) {
+  const p = LB.p, src = p.fotos[i];
   const t = new Image();
   t.onload = () => {
-    const im = $("lbImg"); im.src = src; im.alt = p.nama;
+    LB.i = i;
+    const im = $("lbImg"); im.src = src; im.alt = p.nama + (p.fotos.length > 1 ? " - foto " + (i + 1) : "");
     LB.s = 1; LB.x = LB.y = 0; lbApply();
-    openLayer($("lb"), $("lbClose"));
+    const n = p.fotos.length;
+    $("lbCount").textContent = (i + 1) + "/" + n;
+    $("lbCount").hidden = $("lbPrev").hidden = $("lbNext").hidden = n < 2;
+    if (first) openLayer($("lb"), $("lbClose"));
   };
   t.onerror = () => toast("Foto belum tersedia.");
   t.src = src;
 }
+function openLightbox(id, i) {
+  const p = byId.get(id);
+  if (!p || !p.fotos.length) { toast("Foto belum tersedia."); return; }
+  LB.p = p; lbLoad(clamp(parseInt(i, 10) || 0, 0, p.fotos.length - 1), true);
+}
+function lbStep(d) { const n = LB.p ? LB.p.fotos.length : 0; if (n > 1) lbLoad((LB.i + d + n) % n, false); }
 function initLightbox() {
   const st = $("lbStage");
   st.addEventListener("pointerdown", (e) => {
@@ -629,6 +679,8 @@ function initLightbox() {
   $("lbOut").addEventListener("click", () => lbSet(LB.s / 1.4));
   $("lbReset").addEventListener("click", () => { LB.x = LB.y = 0; lbSet(1); });
   $("lbClose").addEventListener("click", () => closeLayer($("lb")));
+  $("lbPrev").addEventListener("click", () => lbStep(-1));
+  $("lbNext").addEventListener("click", () => lbStep(1));
 }
 
 /* ============ 11. SISTEM PEMESANAN ============ */
@@ -675,7 +727,7 @@ function bindEvents() {
     const id = t.dataset.id;
     switch (t.dataset.action) {
       case "detail": openDetail(id); break;
-      case "zoom": openLightbox(id); break;
+      case "zoom": openLightbox(id, t.dataset.i); break;
       case "buy": openOrder(id); break;
       case "contact": openOrder(null); break;
       case "reset": resetFilters(); break;
@@ -701,6 +753,10 @@ function bindEvents() {
       if (layers.length) closeLayer(layers[layers.length - 1].el);
       else if (menuOpen()) { setMenu(false); $("menuBtn").focus(); }
     } else if (e.key === "Tab") trapTab(e);
+    else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      const top = layers[layers.length - 1];
+      if (top && top.el === $("lb")) lbStep(e.key === "ArrowLeft" ? -1 : 1);
+    }
   });
   // Cegah zoom halaman (foto tetap bisa di-zoom lewat lightbox)
   for (const ev of ["gesturestart", "gesturechange", "gestureend"]) document.addEventListener(ev, (e) => e.preventDefault());
@@ -730,7 +786,7 @@ function initHero() {
   const box = $("heroVisual");
   const p = products.find((x) => x.unggulan && x.tersedia) || products.find((x) => x.unggulan) || products[0];
   if (!p) { box.hidden = true; return; }
-  box.append(h("button", { class: "photo-btn", type: "button", "data-action": "detail", "data-id": p.id, "aria-label": "Lihat detail " + p.nama }, makePhoto(p, true)),
+  box.append(makeSlider(p, { action: "detail", label: "Lihat detail " + p.nama, eager: true }),
     h("div", "hero-cap", p.nama + (p.pr.jualValid ? " • " + fmt(p.pr.jual) : "")));
 }
 function init() {
