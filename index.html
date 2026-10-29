@@ -13,6 +13,8 @@
 <meta property="og:description" content="Katalog tas premium untuk perjalanan dan aktivitas outdoor. Pesan lewat WhatsApp atau Instagram.">
 <!-- Untuk preview tautan, sebagian aplikasi butuh alamat gambar lengkap, mis. https://domainmu.com/produk0101.jpg -->
 <meta property="og:image" content="produk0101.jpg">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%233F4D2F'/%3E%3Cpath d='M9 22V12a7 7 0 0 1 14 0v10z' fill='none' stroke='%23FBF8F1' stroke-width='2.4'/%3E%3C/svg%3E">
 <style>
 :root{
@@ -331,11 +333,11 @@ const STORE_CONFIG = {
 const PRODUCTS = [
   /* Satu produk per warna, karena harga jual tiap warna berbeda. Foto: produk0101-0103 = hitam, produk0201-0203 = biru, produk0301-0303 = merah. */
   { id: "pacemaker-10l-hitam", nama: "Eiger Pacemaker 10L - Hitam", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0101.jpg", "produk0102.jpg", "produk0103.jpg"],
-    hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "segera",
+    hargaAsli: 609000, hargaJual: 490000, stok: 5, status: "tersedia",
     deskripsi: "Eiger Pacemaker 10L warna hitam. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Hitam"], unggulan: true, tanggalDitambahkan: "2026-10-29" },
   { id: "pacemaker-10l-biru", nama: "Eiger Pacemaker 10L - Biru", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0201.jpg", "produk0202.jpg", "produk0203.jpg"],
-    hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "habis",
+    hargaAsli: 609000, hargaJual: 539000, stok: 5, status: "tersedia",
     deskripsi: "Eiger Pacemaker 10L warna biru. Edit deskripsi ini bila ingin menambah spesifikasi.",
     warna: ["Biru"], unggulan: false, tanggalDitambahkan: "2026-10-29" },
   { id: "pacemaker-10l-merah", nama: "Eiger Pacemaker 10L - Merah", merek: "Eiger", kategori: "Tas Ransel", kondisi: "baru", gambar: ["produk0301.jpg", "produk0302.jpg", "produk0303.jpg"],
@@ -808,6 +810,10 @@ function init() {
   }
 }
 init();
+/* Daftarkan service worker (hanya berjalan di HTTPS atau localhost, aman bila gagal) */
+if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol)) {
+  window.addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch((e) => console.warn("Service worker gagal:", e)));
+}
 </script>
 </body>
 </html>
